@@ -1,0 +1,85 @@
+﻿.ProductWindow {
+    height: 400px;
+    width: 100%;
+    background: gray;
+}
+
+.ProductAisle {
+    padding: 20px;
+    width: 75%;
+    height: 200px;
+    margin: auto;
+}
+
+.Product {
+    border: 1px solid white;
+    display: inline-block;
+    margin: 5px;
+    vertical-align: top;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    padding: 5px;
+    width: 90px;
+    border-radius: 3px;
+    background-color: dimgray;
+    box-shadow: 0 0 5px 1px black;
+}
+
+    .Product label {
+        height: 35px;
+        display:inline-block;
+    }
+
+.counter {
+    border-top: 1px solid white;
+}
+
+.buybutton{
+    background: dodgerblue;
+    color:white;
+    border: 1px solid black;
+    border-radius:5px;
+    font-variant:small-caps;
+}
+
+.buybutton:hover{
+    cursor:pointer;
+    background:lawngreen;
+}
+
+.SoldProduct {
+    animation: colorchange 1s;
+}
+
+#ConnectionStatus {
+    text-align: center;
+    text-shadow: 1px 1px 1px black;
+}
+
+@keyframes colorchange {
+    0% {
+        background: dimgray;
+    }
+
+    25% {
+        background: seagreen;
+    }
+
+    50% {
+        background: lawngreen;
+    }
+
+    75% {
+        background: seagreen;
+    }
+
+    100% {
+        background: dimgray;
+    }
+}
+
+
+.Connected {
+    color: lawngreen;
+}

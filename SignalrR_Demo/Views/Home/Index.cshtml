@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+<link href="~/Content/SignalRdemo.css" rel="stylesheet" />
+<script src="~/SignalR/Hubs/"></script>
+
+<div class="ProductWindow">
+    <div id="ConnectionStatus"></div>
+    <div class="ProductAisle">
+        <div class="Product" id="product1">
+            <label>USB Cable</label>
+            <div class="counter">0</div>
+        </div>
+        <div class="Product" id="product2">
+            <label>HDMI Cable</label>
+            <div class="counter">0</div>
+        </div>
+        <div class="Product" id="product3">
+            <label>21" Monitor</label>
+            <div class="counter">0</div>
+        </div>
+        <div class="Product" id="product4">
+            <label>HP Laptop</label>
+            <div class="counter">0</div>
+        </div>
+        <div class="Product" id="product5">
+            <label>Computer Mouse</label>
+            <div class="counter">0</div>
+        </div>
+        <div class="Product" id="product6">
+            <label>Wireless Keyboard</label>
+            <div class="counter">0</div>
+        </div>
+        <div class="Product" id="product7">
+            <label>1TB Hard Drive</label>
+            <div class="counter">0</div>
+        </div>
+        <div class="Product" id="product8">
+            <label>Wireless Router</label>
+            <div class="counter">0</div>
+        </div>
+        <div class="Product" id="product9">
+            <label>Internet Modem</label>
+            <div class="counter">0</div>
+        </div>
+        <div class="Product" id="product10">
+            <label>Network Cable</label>
+            <div class="counter">0</div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var products = $.connection.productHub;
+
+    products.client.ProductIsSold = function (productid) {
+        if (productid) {
+            var ref = $('#product' + productid);
+            ref.removeClass('SoldProduct');
+            void document.getElementById('product' + productid).offsetWidth;
+            ref.addClass('SoldProduct');
+            var counter = $(ref).find('.counter');
+            var current = parseInt(counter.text());  
+            counter.text(current+1);
+        }
+    }
+
+    $.connection.hub.start().done(function () {
+        $('#ConnectionStatus').text('Connected to SignalR Hub.').addClass('Connected');
+    }); 
+
+    $.connection.hub.disconnected(function () {
+        setTimeout(function () {
+            $.connection.hub.start().done(function () {
+                $('#ConnectionStatus').text('Connected to SignalR Hub.').addClass('Connected');
+            });
+        }, 300000);
+    });
+</script>
